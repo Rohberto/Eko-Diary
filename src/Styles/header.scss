@@ -1,0 +1,30 @@
+@import "./variables.scss";
+.HeaderContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+border-bottom: 3px solid #FFFFFF;
+margin: 0 20px;
+
+
+
+    .headerLogo{
+        width: 70%;
+        padding: 20px 0;
+        h1{
+font-family: 'BN Nokyo';
+font-style: normal;
+font-weight: 400;
+font-size: 78px;
+white-space: no-wrap;
+line-height: 19px;
+leading-trim: both;
+text-edge: cap;
+letter-spacing: -0.66105px;
+color: #F3CC42;
+
+
+        }
+    }
+}
