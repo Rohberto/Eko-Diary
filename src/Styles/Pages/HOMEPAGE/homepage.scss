@@ -2,6 +2,25 @@
 .homepage-container{
 padding: 20px;
 
+.no-events{
+ min-height: 50vh;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+
+    p{
+        font-family: 'Genos';
+font-size: 25px;
+line-height: 25px;
+text-align: center;
+letter-spacing: -0.457589px;
+color: #E4ECFE;
+    }
+}
+
 .current-date{
 font-family: 'Genos';
 font-style: normal;
@@ -58,32 +77,81 @@ color: #E4ECFE;
   margin-bottom: 0;
     width: 100%;
     background-color: transparent;
+
     .swiper-slide-next, .swiper-slide-prev{
         opacity: 1;
     }
-    .swiper-slide-prev, .swiper-slide-next{
-        .slider_bottom_content{
-            display: none;
+    @include breakpoint(md, max) {
+        .swiper-slide-prev, .swiper-slide-next{
+            .slider_bottom_content{
+                display: none;
+            }
+        }
+
+        .swiper-slide-active{
+            .slider_bottom_content{
+                display: flex;
+                justify-content: space-between;
+                margin-top: 30px;
+            }
+        }
+
+        .swiper-slide{
+            width: 100%;
+            padding: 20px 0;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            .slide_img_container{
+                display: block;
+               width: 100%;
+                display: flex;
+                justify-content: center;
+                img{
+                   width: 100%;
+                    height: auto;
+                    object-fit: cover;
+                    border-radius: none;
+                    }
         }
     }
-    .swiper-slide-active{
+}
+
+    .swiper-slide{
         .slider_bottom_content{
             display: flex;
             justify-content: space-between;
             margin-top: 30px;
         }
     }
+    .swiper-slide-prev, .swiper-slide-next{
+        .slider_bottom_content{
+            @include breakpoint(md, max){
+                display: none;
+              }
+        }
+    }
+
     .swiper-slide{
         width: 100%;
-        padding: 0;
+        padding: 20px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+         @include breakpoint(md, max){
+             padding: 20px 0;
+            }
         .slide_img_container{
-            width: 100%;
+            display: block;
+           width: 100%;
             display: flex;
             justify-content: center;
             img{
-                width: 100%;
+               width: 100%;
+                max-height: 350px;
                 object-fit: cover;
-                }
+                border-radius: 30px;
+                @include breakpoint(md, max){
+               height: auto;
+               border-radius: 0;
+            }
+            }
         }
         .eventName{
 font-family: 'Genos';
@@ -91,6 +159,7 @@ font-weight: bold;
 font-size: 40px;
 line-height: 25px;
 text-align: center;
+display: block;
 letter-spacing: -0.457589px;
 color: #E4ECFE;
 margin: 15px 0;

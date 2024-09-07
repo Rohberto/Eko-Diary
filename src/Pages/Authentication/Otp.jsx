@@ -96,7 +96,7 @@ const handleResendOtp = async () => {
         <button onClick={handleResendOtp}>Resend OTP code.</button>
       </div>
      <div className="verifyBtnCont"><button className="verifyBtn" onClick={submitOtp}>{loading ? "Loading..." : "Verify"}</button></div> 
-      <p className="verifyBackBtn"><Link to="/">Back</Link></p>
+      <p className="verifyBackBtn"><Link to="/onboarding">Back</Link></p>
     </div>
   )
 }

@@ -7,7 +7,7 @@ const Welcome = () => {
   const {user} = useSelector((state) => state.user);
   useEffect(() => {
     setTimeout(() => {
-      navigate('/homepage')
+      navigate('/')
     }, 2000)
   }, [])
   return (

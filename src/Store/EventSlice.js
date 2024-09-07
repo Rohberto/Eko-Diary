@@ -5,7 +5,7 @@ const baseUrl = "https://eko-server.onrender.com";
 export const createEvent = createAsyncThunk(
     "event/createEvent", async (body) => {
         try{
-        const request = await axios.post(`http://localhost:5000/events/create`, body, {
+        const request = await axios.post(`${baseUrl}/events/create`, body, {
             headers: { "Content-Type": "multipart/form-data" },
           });
         const response = request.data;

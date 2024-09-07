@@ -26,7 +26,7 @@ const Login = () => {
     setEmail("");
       setPassword("");
     localStorage.setItem("user", JSON.stringify(result.payload.data));
-    navigate("/homepage");
+    navigate("/");
    }
   }catch(err){
     console.log(err.message);
@@ -45,7 +45,7 @@ const Login = () => {
     const result = await dispatch(googleLoginUser(credentials));
     if(result.payload.status === "SUCCESS"){
       localStorage.setItem("user", JSON.stringify(result.payload.data));
-      navigate("/homepage");
+      navigate("/");
      }
    }catch(err){
     console.log(err.message);
@@ -79,4 +79,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Login;

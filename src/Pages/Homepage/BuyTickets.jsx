@@ -23,9 +23,9 @@ const BuyTickets = () => {
   const [ phone, setPhone ] = useState("");
   const [modal, setModal] = useState(false);
   const [ticket_loading, setLoading] = useState(false);
-    const publicKey = "pk_live_7c27696b8c1eea8cac71ba28b136a3ad296be254";
-    const base_url = "https://new-eko-diary.onrender.com";
-      //current_event.price.ticket_price * qty,
+  const publicKey = "pk_live_7c27696b8c1eea8cac71ba28b136a3ad296be254";
+  const base_url = "https://eko-server.onrender.com";
+   const dispatch = useDispatch();
     
 
   const generateTicket = async () => {
@@ -83,6 +83,9 @@ console.log(err.message);
       {
         loading ? (<div className='hour'><div class="lds-hourglass"></div></div>) : ( 
         <>
+        {!user ? (<div className='verify_post'>
+            <p>Can't pay for an event without logging in, Click on this <Link to="/login">Login</Link> to login or verify your account.</p>
+        </div>) : (<>
         <h1 className='checkout_title'>Checkout</h1>
         <div className="checkout_state">
             <div className="ticket_state">
@@ -217,7 +220,7 @@ modal && (
     </div>
 
       <div className="modal_button">
-        <button><Link to="/homepage">Continue To Homepage</Link></button>
+        <button><Link to="/">Continue To Homepage</Link></button>
       </div>
 </div>
 </div>
@@ -226,6 +229,7 @@ modal && (
 
 )
 }
+        </>)}
 </>)
 }
     </div>

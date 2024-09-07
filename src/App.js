@@ -17,6 +17,7 @@ import EventDetail from './Pages/Homepage/eventDetail';
 import CreateEvent from './Pages/Homepage/createEvent';
 import { getAllEvents } from './Store/EventsSlice';
 import BuyTickets from './Pages/Homepage/BuyTickets';
+import NotFoundPage from './Components/NotFoundPage';
 
 const App = () => {
   const [otp, setOtp] = useState("");
@@ -40,19 +41,20 @@ const dispatch = useDispatch();
     <div className='app_container'>
       <Header/>
     <Routes>
-      <Route  path='/' element={user !== null || undefined ? <Navigate replace to="/homepage" />: <Onboarding/>} />
-      <Route path='/login' element={user !== null || undefined? <Navigate replace to="/homepage" /> : <Login/>} />
-      <Route path='/signup' element={user !== null || undefined? <Navigate replace to="/homepage" /> : <SignUp/>} />
+      <Route  path='/onboarding' element={user !== null || undefined ? <Navigate replace to="/" />: <Onboarding/>} />
+      <Route path='/login' element={user !== null || undefined? <Navigate replace to="/" /> : <Login/>} />
+      <Route path='/signup' element={user !== null || undefined? <Navigate replace to="/" /> : <SignUp/>} />
       <Route path='/otp' element={<Otp length={4} onChangeOtp={handleChangeOtp}/>} />
       <Route path='/Welcome' element={<Welcome/>} />
       <Route path='/forgot-password' element={<ForgotPass/>} />
       <Route path='/reset-password/:id/:token' element={<ResetPass/>} />
-      <Route path='/homepage' element={ user === null || undefined? <Navigate replace to="/" /> :<Homepage/>} />
+      <Route path='/' element={<Homepage/>}/>
       <Route path='/event/:id' element={ <EventDetail/>} />
       <Route path='/create-event' element={ <CreateEvent/>} />
       <Route path='/checkout/:id' element={ <BuyTickets/>} />
+      <Route path="*" element={<NotFoundPage/>} />
 </Routes>
-{user && location.pathname == "/homepage" && !loading && (<Menu/>)}
+{!location.pathname == "/" && !loading && (<Menu/>)}
 
     </div>
   )

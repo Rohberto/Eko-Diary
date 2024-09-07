@@ -20,11 +20,12 @@ const EventDetail = () => {
     <div className="event_detail_container">
       {
         loading ? (<div className='hour'><div class="lds-hourglass"></div></div>) : (
-          <>
+          <div className='detail-cont'>
          <div className="event_img_container">
        <img src={current_event.image} alt="Event Image" className="event_img" />
+       <h1 className="event_name">{current_event.name}</h1>
        </div>
-        <h1 className="event_name">{current_event.name}</h1>
+       <div className='detail-content'>
         <div className="event_date">
           <BsCalendar3 className='date_icon'/> <p>{new Date(current_event.date).toLocaleString()}</p>
         </div>
@@ -48,11 +49,12 @@ const EventDetail = () => {
           <a className="contact_link" href={`https://instagram.com/${current_event.instagram}`}><FaInstagram className='event_twitter_link'/></a>
           <a className="contact_link" href={`https://wa.me/${current_event.whatsapp}`}><FaWhatsapp className='event_twitter_link'/></a>
         </div>
+        </div>
         <div className="event_buy">
         <img src={SVG} alt="svg" className="svg" />
         <p><Link to={`/checkout/${current_event._id}`} className='buy_ticket'>Buy Ticket</Link></p>
         </div>
-        </>)
+        </div>)
 }
     </div>
   )

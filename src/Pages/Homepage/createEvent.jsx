@@ -3,6 +3,8 @@ import { FaLocationDot } from "react-icons/fa6";
 import { HiStatusOnline } from "react-icons/hi";
 import { useDispatch, useSelector } from 'react-redux';
 import { createEvent } from '../../Store/EventSlice';
+import { Link } from 'react-router-dom';
+
 const CreateEvent = () => {
     const dispatch = useDispatch();
     const {user} = useSelector((state) => state.user);
@@ -19,11 +21,11 @@ const CreateEvent = () => {
     const [ticket_price, setTicketPrice] = useState(0);
     const [free, setFree] = useState(false);
     const [capacity, setCapacity] = useState(0);
-    const [category, setCategory] = useState("");
+    const [category, setCategory] = useState("entertainment");
     const [twitter, setTwitter] = useState("");
     const [whatsapp, setWhatsapp] = useState("");
     const [instagram, setInstagram] = useState("");
-    
+    const [modal, setModal] = useState(false); 
    const [image, setImage] = useState(null);
 
     const handleEventSubmit = async (e) => {
@@ -49,7 +51,19 @@ const CreateEvent = () => {
 
         try{
     const result = await dispatch(createEvent(body));
-   console.log(result);
+    if(result.payload.status === "SUCCESS"){
+    setModal(true);
+    setName("");
+    setDetails("");
+    setLocation("");
+    setUrl("");
+    setState("");
+    setStartTime("");
+    setEndTime("");
+    setTwitter("");
+    setWhatsapp("");
+    setInstagram("");
+  }
         }
         catch(err){
             console.log(err.message);
@@ -58,6 +72,10 @@ const CreateEvent = () => {
 
   return (
     <div className='create_event_container'>
+        { !user || user.verified === false ? (<div className='verify_post'>
+            <p>Can't create an event without logging in, Click on this <Link to="/login">Login</Link> to login or verify your account.</p>
+        </div>) : (
+            <>
         <h1 className="event_create_heading">Create an Event With Eko Diary</h1>
 <form onSubmit={handleEventSubmit}>
         <div className="event_title_container">
@@ -145,6 +163,32 @@ const CreateEvent = () => {
 <button type="submit">{loading ? "Loading" : "Create Event"}</button>
 </div>
     </form>
+
+    {
+  //Modal
+modal && (
+
+  <div className="modal-dialog">
+
+    <div className="modal-content">
+      <button className="modal_close" onClick={() => setModal(false)}>&times;</button>
+      <div class="page-body">
+    <div class="head">  
+      <h3>Event has been created Successfully.</h3>
+    </div>
+
+      <div className="modal_button">
+        <button><Link to="/">Continue To Homepage</Link></button>
+      </div>
+</div>
+</div>
+    </div>
+
+
+)
+}
+</>)
+}
     </div>
 
   )

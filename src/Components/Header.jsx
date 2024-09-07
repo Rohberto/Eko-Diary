@@ -1,14 +1,77 @@
 import React from "react";
 import Logo from "../Images/logo.png";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Header = () => {
+  const {user} = useSelector((state) => state.user);
   return (
     <div className='HeaderContainer'>
       <div className="headerLogo">
         <h1>EKO DIARY</h1>
       </div>
 
-      <div className="headerIcon">
+    <ul className="header_links">
+      <li><Link to="/">Home</Link></li>
+      <li><Link to="/create-event">Create Events</Link></li>
+      <li><Link to="">About</Link></li>
+      {
+     !user && ( <li><Link to="/login">Login</Link></li>)
+}
+    </ul>
+
+<div className="mobile_menu">
+<div className="hamburger" onClick={() => {
+  const hamburger = document.querySelector(".hamburger");
+  const navMenu = document.querySelector(".mobile_menu_content");
+
+  hamburger.classList.toggle("active");
+  navMenu.classList.toggle("active");
+}}>
+                <span className="bar"></span>
+                <span className="bar"></span>
+                <span className="bar"></span>
+      </div>
+
+      <div className="mobile_menu_content">
+
+        <ul className="mobile_header_links">
+        {user && (<p>Hi, {user.name}</p>)}
+      <li onClick={() => {
+  const hamburger = document.querySelector(".hamburger");
+  const navMenu = document.querySelector(".mobile_menu_content");
+
+  hamburger.classList.toggle("active");
+  navMenu.classList.toggle("active");
+}}><Link to="/">Home</Link></li>
+      <li onClick={() => {
+  const hamburger = document.querySelector(".hamburger");
+  const navMenu = document.querySelector(".mobile_menu_content");
+
+  hamburger.classList.toggle("active");
+  navMenu.classList.toggle("active");
+}}><Link to="/create-event">Create Events</Link></li>
+      <li onClick={() => {
+  const hamburger = document.querySelector(".hamburger");
+  const navMenu = document.querySelector(".mobile_menu_content");
+
+  hamburger.classList.toggle("active");
+  navMenu.classList.toggle("active");
+}}><Link to="">About</Link></li>
+      {
+     !user && ( <li onClick={() => {
+      const hamburger = document.querySelector(".hamburger");
+      const navMenu = document.querySelector(".mobile_menu_content");
+    
+      hamburger.classList.toggle("active");
+      navMenu.classList.toggle("active");
+    }}><Link to="/login">Login</Link></li>)
+}
+    </ul>
+      </div>
+</div>
+     
+<div className="headerIcon">
         <img src={Logo} alt="Logo Icon" />
       </div>
     </div>

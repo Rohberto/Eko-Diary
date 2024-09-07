@@ -46,7 +46,7 @@ const SignUp = () => {
     const result = await dispatch(googleLoginUser(credentials));
     if(result.payload.status === "SUCCESS"){
       localStorage.setItem("user", JSON.stringify(result.payload.data));
-      navigate("/homepage");
+      navigate("/");
      }
    }catch(err){
     console.log(err.message);
