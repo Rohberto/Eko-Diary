@@ -9,6 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1000;
  }
  .modal-content{
   position: relative;
@@ -65,5 +66,25 @@ font-weight: 300;
 font-size: 16px;
 color: #060C22;
 margin: 0 auto;}
+  }
+
+  .modal_buttons{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 20px;
+    button{
+      background-color: transparent;
+      width: 100px;
+      height: 50px;
+      border: 1px solid #535766;
+      border-radius: 47px;
+      font-family: 'Genos';
+      font-style: normal;
+      font-weight: 300;
+      font-size: 20px;
+      color: #060C22;
+      margin: 0 auto;
+    }
   }
   

@@ -9,7 +9,6 @@ export const createEvent = createAsyncThunk(
             headers: { "Content-Type": "multipart/form-data" },
           });
         const response = request.data;
-        console.log(response);
         return response;
     }
         catch(err){

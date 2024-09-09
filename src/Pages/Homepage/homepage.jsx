@@ -1,29 +1,52 @@
 import React, {useEffect, useState} from 'react';
 import  { Swiper, SwiperSlide } from 'swiper/react';
 import {  Pagination, Navigation } from 'swiper/modules';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import 'swiper/scss';
 import 'swiper/scss/navigation';
 import 'swiper/scss/pagination';
-import Calendar from "react-calendar";
-import Menu from "../../Images/menu.svg";
-import Calendar1 from "../../Images/calendar.svg"
 import Search from "../../Images/search.svg";
 import 'react-calendar/dist/Calendar.css';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Slider from '../../Components/Slider';
+import { addEvent, updateDeletedEvent } from '../../Store/EventsSlice';
+import axios from 'axios';
 
-const Homepage = () => { 
+const Homepage = ({socket}) => { 
+  const navigate = useNavigate();
   const date = new Date();
+  const dispatch = useDispatch();
+  const [modal, setModal] = useState(false);
   const {events, loading} = useSelector((state) => state.events);
-const [query, setQuery] = useState('');
+const {user} = useSelector((state) => state.user);
+  const [query, setQuery] = useState('');
 const [filteredData, setFilteredData] = useState([]);
 const [category, setCategory] = useState("all");
+const [current_slide, setCurrentSlide] = useState({});
+const updateModal = () => {
+  setModal(true);
+}
+const setCurrent = (slide) => {
+  setCurrentSlide(slide);
+}
   useEffect(() => {
    if(!loading){
     setFilteredData(events);
    }
   }, [loading, events]);
+
+  useEffect(() => {
+    // console.log('SOCKET IO', socket);
+    socket.on('new-event', (event) => {
+      dispatch(addEvent([...events, event]));
+    })
+    socket.on("event-deleted", (id) => {
+     const newEvents = events.filter(event => {
+      return event._id !== id
+     });
+     dispatch(updateDeletedEvent(newEvents));
+    })
+}, []);
   
   const handleInputChange = (event) => {
     const value = event.target.value;
@@ -65,6 +88,18 @@ const [category, setCategory] = useState("all");
     );
     setFilteredData(filtered);
   };
+
+  const deleteEvent = async (_id) => {
+    try{
+      const request = await axios.delete(`https://eko-server.onrender.com/events/${_id}/${user._id}`);
+      const response = request.data;
+      socket.emit("delete-event", response.data);
+      setModal(false);
+    }catch(err){
+      console.log(err.message);
+    }
+      
+  }
 return (
     <div className='homepage-container'>
       {loading ? <div className='hour'><div class="lds-hourglass"></div></div> : (
@@ -112,8 +147,8 @@ return (
     className="swiper_container">
       {filteredData.map((slide, i) => (
         <>
-           <SwiperSlide key={i}>
-            <div className="slide_img_container">
+           <SwiperSlide key={i} >
+            <div className="slide_img_container" onClick={() => navigate(`/event/${slide._id}`)}>
             <img src={slide.image} alt="slide_image" className='slider-img'/>
             </div>
           <p className="eventName">{`${slide.name} : ${slide.state}`}</p>
@@ -140,7 +175,7 @@ return (
               <p>{new Date(slide.date).getDay()}</p>
             </div>
 
-           <Slider slide={slide}/>
+           <Slider slide={slide} setModal={updateModal} setCurrent={setCurrent}/>
           </div>
           <div className="slider-controler">
           <div className="swiper-pagination"></div>
@@ -170,6 +205,30 @@ return (
         <input type="text" name="search" id="search" placeholder='Search Events' value={query} onChange={handleInputChange}/>
       </div>
     </div>
+
+    {
+  //Modal
+modal && (
+<div className="modal-dialog">
+
+    <div className="modal-content">
+      <button className="modal_close" onClick={() => setModal(false)}>&times;</button>
+      <div class="page-body">
+    <div class="head">  
+      <h3>Are you sure you want to delete this event?</h3>
+    </div>
+
+      <div className="modal_buttons">
+        <button onClick={() => deleteEvent(current_slide._id)}>Yes</button>
+        <button onClick={() => setModal(false)}>No</button>
+      </div>
+</div>
+</div>
+    </div>
+
+
+)
+}
      </> ) : (<div className='no-events'>
         <p>Couldn't find any event, refresh your page and check internet connectivity.</p>
       </div>)

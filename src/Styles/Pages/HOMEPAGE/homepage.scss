@@ -107,13 +107,13 @@ color: #E4ECFE;
                 justify-content: center;
                 img{
                    width: 100%;
-                    height: auto;
+                   min-height: 350px;
                     object-fit: cover;
                     border-radius: none;
                     }
         }
     }
-}
+}color: #060C22;
 
     .swiper-slide{
         .slider_bottom_content{
@@ -324,6 +324,15 @@ text-align: center;
         cursor: pointer;
         padding-left: 10px;
         position: relative;
+    }
+    .deleteEvent{
+        padding-right: 10px;
+
+        .delete_icon{
+            color: #E4ECFE;
+            font-size: 18px;
+            width: 50px;
+        }
     }
 }
 .search_category{

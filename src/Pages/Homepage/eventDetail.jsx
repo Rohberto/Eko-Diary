@@ -14,7 +14,7 @@ const EventDetail = () => {
     const {id} = useParams();
     const {events, loading} = useSelector((state) => state.events);
     const current_event = events.find((event) => event._id == id);
-  console.log(current_event)
+
     
   return (
     <div className="event_detail_container">

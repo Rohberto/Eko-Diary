@@ -28,7 +28,7 @@ const BuyTickets = () => {
    const dispatch = useDispatch();
     
 
-  const generateTicket = async () => {
+  const generateTicket = () => {
     const body = {
       userId: user._id,
       eventId: current_event._id,
@@ -37,45 +37,42 @@ const BuyTickets = () => {
       quantity: qty,
       firstname
     }
-    try{
       setLoading(true)
       if(!user._id || !current_event || !email || !firstname ){
         console.log("error");
         return setError("Fill Out all Input fields");
       } else{
-      const request = await axios.post(`${base_url}/tickets`, body)
-      const response = request.data;
-      console.log(response);
-      if(response.status === "SUCCESS"){
+     axios.post(`${base_url}/tickets`, body)
+     .then((response) => {
+      if(response.data.status === "SUCCESS"){
         setModal(true);
+        setLoading(false);
+        setEmail("");
+        setLastName("");
+        setFirstName("");
+        setPhone("")
       } else{
         setError(response.data);
       }
-     
-    }
-    }catch (err) {
-setError(err.message);
-console.log(err.message);
-    }
-    finally{
-      setLoading(false);
-      setEmail("");
-      setLastName("");
-      setFirstName("");
-      setPhone("")
+     }).catch(err => {
+      console.log(err.message);
+      setError(err.message);
+     })
     }
   }
     const componentProps = {
     email,
-    amount: 10000,
+    amount: current_event.price.ticket_price * qty*100,
     metadata: {
       firstname,
       lastname,
       phone,
     },
     publicKey,
-    text: "Pay Now",
-    onSuccess: () => generateTicket,
+    text: loading ? "Loading" : "Pay Now",
+    onSuccess: () => {
+      generateTicket();
+    },
     onClose: () => alert("Wait! You need to donate, don't go!!!!"),
   }
     return (

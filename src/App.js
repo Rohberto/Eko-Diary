@@ -18,6 +18,9 @@ import CreateEvent from './Pages/Homepage/createEvent';
 import { getAllEvents } from './Store/EventsSlice';
 import BuyTickets from './Pages/Homepage/BuyTickets';
 import NotFoundPage from './Components/NotFoundPage';
+import socketIO from 'socket.io-client';
+
+
 
 const App = () => {
   const [otp, setOtp] = useState("");
@@ -28,6 +31,8 @@ const App = () => {
   const {user} = useSelector((state) => state.user);
   const {loading} = useSelector((state) => state.events);
 const dispatch = useDispatch();
+const socket = socketIO.connect('http://localhost:5000');
+
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
     if (loggedInUser) {
@@ -48,9 +53,9 @@ const dispatch = useDispatch();
       <Route path='/Welcome' element={<Welcome/>} />
       <Route path='/forgot-password' element={<ForgotPass/>} />
       <Route path='/reset-password/:id/:token' element={<ResetPass/>} />
-      <Route path='/' element={<Homepage/>}/>
+      <Route path='/' element={<Homepage socket={socket}/>}/>
       <Route path='/event/:id' element={ <EventDetail/>} />
-      <Route path='/create-event' element={ <CreateEvent/>} />
+      <Route path='/create-event' element={ <CreateEvent socket={socket}/>} />
       <Route path='/checkout/:id' element={ <BuyTickets/>} />
       <Route path="*" element={<NotFoundPage/>} />
 </Routes>

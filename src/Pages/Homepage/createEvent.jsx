@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createEvent } from '../../Store/EventSlice';
 import { Link } from 'react-router-dom';
 
-const CreateEvent = () => {
+const CreateEvent = ({socket}) => {
     const dispatch = useDispatch();
     const {user} = useSelector((state) => state.user);
     const {loading, error} = useSelector((state) => state.event);
@@ -52,15 +52,16 @@ const CreateEvent = () => {
         try{
     const result = await dispatch(createEvent(body));
     if(result.payload.status === "SUCCESS"){
+    socket.emit("event", result.payload.data)
     setModal(true);
     setName("");
     setDetails("");
     setLocation("");
     setUrl("");
     setState("");
-    setStartTime("");
-    setEndTime("");
-    setTwitter("");
+   setStartTime("");
+   setEndTime("");
+   setTwitter("");
     setWhatsapp("");
     setInstagram("");
   }

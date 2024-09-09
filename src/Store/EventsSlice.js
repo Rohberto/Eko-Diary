@@ -7,7 +7,6 @@ export const getAllEvents = createAsyncThunk("events/getAllEvents", async () => 
     try{
         const request = await axios.get(`${baseUrl}/events`);
         const response = request.data;
-        console.log(response);
         return response;
     
     }catch(err){
@@ -16,6 +15,8 @@ export const getAllEvents = createAsyncThunk("events/getAllEvents", async () => 
     }
 })
 
+
+
 const EventsSlice = createSlice({
     name: 'events',
     initialState: {
@@ -23,6 +24,18 @@ const EventsSlice = createSlice({
         events: [],
         error: null
     },
+    reducers: {
+        addEvent: (state, action) => {
+         state.loading = false;
+         state.events = action.payload;
+         state.error = null;
+        }, 
+        updateDeletedEvent: (state, action) => {
+            state.loading = false;
+            state.events = action.payload;
+            state.error = null;
+        }
+      },
     extraReducers: (builder) => {
         builder.addCase(getAllEvents.pending, (state, action) => {
             state.loading = true;
@@ -31,7 +44,6 @@ const EventsSlice = createSlice({
         })
         .addCase(getAllEvents.fulfilled, (state, action) => {
             state.loading = false;
-            console.log(action);
             if(action.payload.status === "FAILED"){
                 state.error = action.payload.message;
                 state.events = [];
@@ -44,8 +56,10 @@ const EventsSlice = createSlice({
            console.log(action);
             state.loading = false;
             state.events = [];
-            state.error =action.error.message
+            state.error  = action.error.message
         })
+      
     }
 })
+export const {addEvent, updateDeletedEvent} = EventsSlice.actions;
 export default EventsSlice.reducer;
