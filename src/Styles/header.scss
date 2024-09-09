@@ -116,7 +116,11 @@ color: #F3CC42;
     }
 }
     .hamburger {
-        display: block;
+        display: none;
+
+        @include breakpoint(md, max){
+            display: block;
+        }
     }
     
     .bar {

@@ -31,7 +31,11 @@ const App = () => {
   const {user} = useSelector((state) => state.user);
   const {loading} = useSelector((state) => state.events);
 const dispatch = useDispatch();
-const socket = socketIO.connect('http://localhost:5000');
+const socket = socketIO.connect('https://eko-server.onrender.com');
+useEffect(() => {
+  socket.on("connect", () => console.log(socket.id));
+}, []);
+
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
