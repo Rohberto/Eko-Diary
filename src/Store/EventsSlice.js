@@ -1,5 +1,4 @@
 import {createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { data } from "../Utils";
 import axios from "axios";
 const baseUrl = "https://eko-server.onrender.com";
 export const getAllEvents = createAsyncThunk("events/getAllEvents", async () => {

@@ -37,14 +37,13 @@ const setCurrent = (slide) => {
 
   useEffect(() => {
     // console.log('SOCKET IO', socket);
-    socket.on('new-event', (event) => {
-      dispatch(addEvent([...events, event]));
+    socket.on('new-event', (events) => {
+      console.log(events);
+      dispatch(addEvent(events));
     })
-    socket.on("event-deleted", (id) => {
-     const newEvents = events.filter(event => {
-      return event._id !== id
-     });
-     dispatch(updateDeletedEvent(newEvents));
+    socket.on("event-deleted", (events) => {
+      console.log(events);
+     dispatch(updateDeletedEvent(events));
     })
 }, []);
   
