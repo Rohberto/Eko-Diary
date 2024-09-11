@@ -37,12 +37,12 @@ useEffect(() => {
 }, []);
 
 
-  useEffect(() => {
-    const loggedInUser = localStorage.getItem("user");
-    if (loggedInUser) {
-      const foundUser = JSON.parse(loggedInUser);
-      dispatch(isLoggedIn(foundUser));
-    }
+ useEffect(() => {
+  //  const loggedInUser = localStorage.getItem("user");
+  //  if (loggedInUser) {
+   //   const foundUser = JSON.parse(loggedInUser);
+   //   dispatch(isLoggedIn(foundUser));
+   // }
     dispatch(getAllEvents());
   }, []);
 
