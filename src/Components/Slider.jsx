@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 const Slider = ({slide, setModal, setCurrent}) => {
     const [showCalendar, setShowCalendar] = useState(false);
 const [viewLink, setViewLink] = useState(false);
-const dispatch = useDispatch();
 const {user} = useSelector((state) => state.user);
 let iconStyles = { color: "#E4ECFE", fontSize: "1.7em", marginLeft: "10px", borderLeft: "1px solid #E4ECFE"};
 return (
@@ -35,7 +34,7 @@ return (
               </div>
 
               {
-                user._id == slide.creatorId && (
+                user?._id == slide.creatorId && (
                   <div className='delete_event' onClick={() => {
                     setModal()
                    setCurrent(slide)}}>
