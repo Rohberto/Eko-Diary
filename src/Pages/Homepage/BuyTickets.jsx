@@ -13,7 +13,7 @@ const BuyTickets = () => {
     const navigate = useNavigate();
     const {events, loading} = useSelector((state) => state.events);
     const {user} = useSelector((state) => state.user);
-    const current_event = events.find((event) => event._id == id);
+    const current_event = events.find((event) => event._id === id);
     const [qty, setQty] = useState(1);
     const [isContact, setIsContact] = useState(false)
     const [error, setError] = useState("");
@@ -25,7 +25,6 @@ const BuyTickets = () => {
   const [ticket_loading, setLoading] = useState(false);
   const publicKey = "pk_live_7c27696b8c1eea8cac71ba28b136a3ad296be254";
   const base_url = "https://eko-server.onrender.com";
-   const dispatch = useDispatch();
     
 
   const generateTicket = () => {
@@ -57,6 +56,7 @@ const BuyTickets = () => {
      }).catch(err => {
       console.log(err.message);
       setError(err.message);
+      console.log(error);
      })
     }
   }

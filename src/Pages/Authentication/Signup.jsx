@@ -1,18 +1,16 @@
 import React, {useState} from 'react';
-import Google from "../../Images/google.svg";
-import Facebook from "../../Images/facebook.svg";
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { googleLoginUser, loginuser, signUser } from '../../Store/UserSlice';
+import { googleLoginUser,  signUser } from '../../Store/UserSlice';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {GoogleLogin} from "@react-oauth/google";
-import axios from "axios";
+
 
 const SignUp = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const {user, error, loading} = useSelector((state) => state.user)
+  const { error, loading} = useSelector((state) => state.user)
   const [name, setName] = useState("");
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
