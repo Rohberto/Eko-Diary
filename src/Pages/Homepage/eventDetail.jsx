@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { useSelector} from 'react-redux'; 
+import { useSelector, useDispatch } from 'react-redux'; 
 import { BsCalendar3 } from "react-icons/bs";
 import { MdOutlineAccessTime } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6";
@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom';
 const EventDetail = () => {
     const {id} = useParams();
     const {events, loading} = useSelector((state) => state.events);
-    const current_event = events.find((event) => event._id === id);
+    const current_event = events.find((event) => event._id == id);
 
     
   return (
@@ -22,7 +22,7 @@ const EventDetail = () => {
         loading ? (<div className='hour'><div class="lds-hourglass"></div></div>) : (
           <div className='detail-cont'>
          <div className="event_img_container">
-       <img src={current_event.image} alt="Event" className="event_img" />
+       <img src={current_event.image} alt="Event Image" className="event_img" />
        <h1 className="event_name">{current_event.name}</h1>
        </div>
        <div className='detail-content'>

@@ -9,7 +9,7 @@ const Welcome = () => {
     setTimeout(() => {
       navigate('/')
     }, 2000)
-  })
+  }, [])
   return (
     <div className='WelcomeContainer'>
         <div className="welocmeImg">

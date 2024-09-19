@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
+import Google from "../../Images/google.svg";
+import Facebook from "../../Images/facebook.svg";
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { googleLoginUser, loginuser } from '../../Store/UserSlice';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {GoogleLogin} from "@react-oauth/google";
-
+import axios from "axios";
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

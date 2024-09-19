@@ -45,7 +45,7 @@ const setCurrent = (slide) => {
       console.log(events);
      dispatch(updateDeletedEvent(events));
     })
-});
+}, []);
   
   const handleInputChange = (event) => {
     const value = event.target.value;
@@ -77,7 +77,7 @@ const setCurrent = (slide) => {
       setFilteredData(events);
       return;
     }
-    if(lowercasedValue === "all"){
+    if(lowercasedValue == "all"){
       setFilteredData(events);
       return;
     }
@@ -112,7 +112,7 @@ return (
 
 <div className="slider__pagination"></div>
 </div>
-{filteredData?.length > 0 ? (
+{filteredData.length > 0 ? (
     <Swiper 
     grabCursor={true}
     centeredSlides={true}
@@ -144,7 +144,7 @@ return (
     }}
     modules={[Pagination, Navigation]}
     className="swiper_container">
-      {filteredData?.map((slide, i) => (
+      {filteredData.map((slide, i) => (
         <>
            <SwiperSlide key={i} >
             <div className="slide_img_container" onClick={() => navigate(`/event/${slide._id}`)}>

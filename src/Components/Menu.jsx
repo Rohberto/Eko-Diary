@@ -1,6 +1,7 @@
 import React from 'react';
 import Award from "../Images/award_star.svg";
 import Brightness from "../Images/brightness.svg";
+import Calendar from "../Images/calendar_month.svg";
 import Confirmation from "../Images/confirmation_number.svg";
 import List from "../Images/list.svg";
 import { FaPlusCircle } from "react-icons/fa";

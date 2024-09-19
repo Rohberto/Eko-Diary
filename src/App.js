@@ -25,7 +25,6 @@ import socketIO from 'socket.io-client';
 const App = () => {
   const [otp, setOtp] = useState("");
   const handleChangeOtp = (newOtp) => {
-    console.log(otp);
     setOtp(newOtp);
   };
   const location = useLocation();
@@ -35,7 +34,7 @@ const dispatch = useDispatch();
 const socket = socketIO.connect('https://eko-server.onrender.com');
 useEffect(() => {
   socket.on("connect", () => console.log(socket.id));
-});
+}, []);
 
 
  useEffect(() => {
@@ -45,7 +44,7 @@ useEffect(() => {
      dispatch(isLoggedIn(foundUser));
     }
     dispatch(getAllEvents());
-  });
+  }, []);
 
   return (
     <div className='app_container'>
@@ -64,7 +63,7 @@ useEffect(() => {
       <Route path='/checkout/:id' element={ <BuyTickets/>} />
       <Route path="*" element={<NotFoundPage/>} />
 </Routes>
-{!location.pathname === "/" && !loading && (<Menu/>)}
+{!location.pathname == "/" && !loading && (<Menu/>)}
 
     </div>
   )

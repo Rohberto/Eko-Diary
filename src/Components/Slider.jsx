@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import Calendar from "react-calendar";
 import Menu from "../Images/menu.svg";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Calendar1 from "../Images/calendar.svg";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { Link } from 'react-router-dom';
@@ -34,7 +34,7 @@ return (
               </div>
 
               {
-                user?._id === slide.creatorId && (
+                user?._id == slide.creatorId && (
                   <div className='delete_event' onClick={() => {
                     setModal()
                    setCurrent(slide)}}>

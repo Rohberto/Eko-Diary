@@ -44,7 +44,7 @@ return response;
             const request = await axios.post(`${baseUrl}/auth/verifyOtp`, credentials);
 const response = request.data;
 return response;
-
+console.log(response);
         }catch(err){
             return err.message;
         }
@@ -178,12 +178,15 @@ const UserSlice = createSlice({
             console.log(action);
             if(action.payload.status === "FAILED"){
                 state.error = action.payload.message;
+                state.user = state.user;
             }else{
+                state.user = state.user;
                 state.error = null;
             }
         })
         .addCase(forgotUser.rejected, (state, action) => {
             state.loading = false;
+            state.user = state.user;
             state.error =action.error.message
         })
         .addCase(resetUser.pending, (state, action) => {
@@ -196,12 +199,15 @@ const UserSlice = createSlice({
             console.log(action);
             if(action.payload.status === "FAILED"){
                 state.error = action.payload.message;
+                state.user = state.user;
             }else{
+                state.user = state.user;
                 state.error = null;
             }
         })
         .addCase(resetUser.rejected, (state, action) => {
             state.loading = false;
+            state.user = state.user;
             state.error =action.error.message
         })
     },

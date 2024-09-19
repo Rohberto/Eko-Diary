@@ -6,7 +6,7 @@ const NotFoundPage = () => {
   return (
     <div className='not-found-container'>
         <div className="error_img_container">
-            <img src={Err} alt="Error" />
+            <img src={Err} alt="Error Image" />
         </div>
 
         <p className="error_link">Click on this link <Link to="/">Home</Link> to navigate to homepage.</p>

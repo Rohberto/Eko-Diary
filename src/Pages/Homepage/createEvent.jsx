@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 const CreateEvent = ({socket}) => {
     const dispatch = useDispatch();
     const {user} = useSelector((state) => state.user);
-    const {loading} = useSelector((state) => state.event);
+    const {loading, error} = useSelector((state) => state.event);
     const [name, setName] = useState("");
     const [details, setDetails] = useState("");
     const [date, setDate] = useState(new Date().toLocaleDateString());
