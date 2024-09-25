@@ -82,6 +82,11 @@ const UserSlice = createSlice({
      state.loading = false;
      state.user = action.payload;
      state.error = null;
+    },
+    loggedOut: (state) => {
+        state.loading = false;
+        state.user = null;
+        state.error = null;
     }
   },
     extraReducers: (builder) => {
@@ -214,5 +219,5 @@ const UserSlice = createSlice({
   
 
 })
-export const {isLoggedIn} = UserSlice.actions;
+export const {isLoggedIn, loggedOut} = UserSlice.actions;
 export default UserSlice.reducer;

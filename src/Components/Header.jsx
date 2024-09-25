@@ -1,10 +1,12 @@
 import React from "react";
 import Logo from "../Images/logo.png";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { loggedOut } from "../Store/UserSlice";
 
 const Header = () => {
   const {user} = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   return (
     <div className='HeaderContainer'>
       <div className="headerLogo">
@@ -16,7 +18,10 @@ const Header = () => {
       <li><Link to="/create-event">Create Events</Link></li>
       <li><Link to="">About</Link></li>
       {
-     !user && ( <li><Link to="/login">Login</Link></li>)
+     !user ? ( <li><Link to="/login">Login</Link></li>) : (<li onClick={() => {
+      localStorage.removeItem("user");
+      dispatch(loggedOut());
+     }}><a href="#">Logout</a></li>)
 }
     </ul>
 
@@ -59,13 +64,21 @@ const Header = () => {
   navMenu.classList.toggle("active");
 }}><Link to="">About</Link></li>
       {
-     !user && ( <li onClick={() => {
+     !user ? ( <li onClick={() => {
       const hamburger = document.querySelector(".hamburger");
       const navMenu = document.querySelector(".mobile_menu_content");
     
       hamburger.classList.toggle("active");
       navMenu.classList.toggle("active");
-    }}><Link to="/login">Login</Link></li>)
+    }}><Link to="/login">Login</Link></li>) :  ( <li onClick={() => {
+      localStorage.removeItem("user");
+      dispatch(loggedOut());
+      const hamburger = document.querySelector(".hamburger");
+      const navMenu = document.querySelector(".mobile_menu_content");
+    
+      hamburger.classList.toggle("active");
+      navMenu.classList.toggle("active");
+    }}><Link to="#">Logout</Link></li>)
 }
     </ul>
       </div>

@@ -42,7 +42,10 @@
 
         .otpInputField{
          width: 15%;
-         padding: 0 20px;
+         padding: 0 10px;
+         display: flex;
+         justify-content: center;
+         align-items: center;
  height: 100px;
             outline: 0;
 border: 1px solid #52555B;
