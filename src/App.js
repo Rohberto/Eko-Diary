@@ -33,7 +33,7 @@ const App = () => {
 const dispatch = useDispatch();
 const socket = socketIO.connect('https://eko-server.onrender.com');
 useEffect(() => {
-  socket.on("connect", () => console.log(socket.id));
+  socket.on("connect", () => console.log(`This is Socket.id: ${socket.id}`));
 }, []);
 
 
