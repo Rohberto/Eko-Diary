@@ -47,7 +47,9 @@ const EventsSlice = createSlice({
                 state.error = action.payload.message;
                 state.events = [];
             }else{
-                state.events = action.payload.data;
+                state.events = action.payload.data.sort(function(a,b){
+                    return new Date(a.date) - new Date(b.date);
+                  });
                 state.error = null;
             }
         })

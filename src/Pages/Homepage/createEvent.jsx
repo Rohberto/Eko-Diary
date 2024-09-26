@@ -30,6 +30,9 @@ const CreateEvent = ({socket}) => {
 
     const handleEventSubmit = async (e) => {
         e.preventDefault();
+        let expiryDate = new Date(date);
+        let expirySeconds = new Date(expiryDate.getTime() + (24 * 60 * 60 * 1000));
+        console.log(expirySeconds);
         const body = new FormData();
         body.append("Image", image);
         body.append("creatorId", user._id);
@@ -48,7 +51,7 @@ const CreateEvent = ({socket}) => {
         body.append("twitter", twitter);
         body.append("whatsapp", whatsapp);
         body.append("instagram", instagram);
-
+        body.append("expireAt", expirySeconds);
         try{
     const result = await dispatch(createEvent(body));
     if(result.payload.status === "SUCCESS"){

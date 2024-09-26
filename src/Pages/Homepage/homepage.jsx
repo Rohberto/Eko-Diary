@@ -31,9 +31,12 @@ const setCurrent = (slide) => {
 }
   useEffect(() => {
    if(!loading){
+    console.log(events);
     setFilteredData(events);
    }
   }, [loading, events]);
+
+
 
   useEffect(() => {
     // console.log('SOCKET IO', socket);
@@ -82,7 +85,7 @@ const setCurrent = (slide) => {
       return;
     }
 
-    const filtered = filteredData.filter((item) =>
+    const filtered = events.filter((item) =>
       item.category.toLowerCase().includes(lowercasedValue)
     );
     setFilteredData(filtered);
