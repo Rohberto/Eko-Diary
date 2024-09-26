@@ -31,7 +31,6 @@ const setCurrent = (slide) => {
 }
   useEffect(() => {
    if(!loading){
-    console.log(events);
     setFilteredData(events);
    }
   }, [loading, events]);

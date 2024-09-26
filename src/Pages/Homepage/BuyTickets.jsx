@@ -23,7 +23,7 @@ const BuyTickets = () => {
   const [ phone, setPhone ] = useState("");
   const [modal, setModal] = useState(false);
   const [ticket_loading, setLoading] = useState(false);
-  const publicKey = "pk_live_7c27696b8c1eea8cac71ba28b136a3ad296be254";
+  const publicKey = process.env.REACT_APP_PAYSTACK_KEY;
   const base_url = "https://eko-server.onrender.com";
    const dispatch = useDispatch();
     
@@ -185,9 +185,9 @@ const BuyTickets = () => {
 
 <div className="bottom_ticket">
   <div className="buy_background">
-        <p>{current_event.price.ticket_price === 0 ? 'Free' : `${current_event.price.ticket_price * qty}`}</p>
+        <p>{current_event.price.ticket_price === 0  ? 'Free' : `${current_event.price.ticket_price * qty}`}</p>
     
-        {current_event.price.ticket_price === 0 ? (
+        {current_event.price.ticket_price === 0  ? (
             <>
           <button onClick={generateTicket}>{ticket_loading ? 'Loading' : 'Continue'}</button>
             </>
