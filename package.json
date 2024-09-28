@@ -34,18 +34,23 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest",
-      "@babel/plugin-transform-private-property-in-object"
+      "react-app/jest"
     ]
   },
   "browserslist": {
     "production": [
       ">0.2%",
       "not dead",
-      "not op_mini all"
+      "not op_mini all",
+      "ios_saf 9",
+      "ios_saf 11",
+      "ios_saf 12",
+      "ios_saf 13",
+      "ios_saf 14",
+       "last 10 safari version"
     ],
     "development": [
-      "last 1 chrome version",
+      "last 2 chrome version",
       "last 1 firefox version",
       "last 2 safari version"
     ]
