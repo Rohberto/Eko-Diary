@@ -1,14 +1,15 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "EKO DIARY",
+  "name": "EKO DIARY",
+  "description": "An Event Ticketing Platform in Lagos.",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "eko_diary.png",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "type": "image/png"
     },
     {
-      "src": "logo192.png",
+      "src": "eko_diary.png",
       "type": "image/png",
       "sizes": "192x192"
     },
