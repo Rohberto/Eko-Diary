@@ -108,7 +108,7 @@ return (
         <>
 
     {
-      events ? (
+      events.length ? (
         <>
         <p className='current-date'>{date.toDateString()}</p>
         <div class="slider__controls">
