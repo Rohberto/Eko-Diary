@@ -77,7 +77,7 @@ const CreateEvent = ({socket}) => {
   return (
     <div className='create_event_container'>
         { !user || user.verified === false ? (<div className='verify_post'>
-            <p>Can't create an event without logging in, Click on this <Link to="/login">Login</Link> to login or verify your account.</p>
+            <p>Can't post an event without logging in, Click on this <Link to="/login">Login</Link> to login or verify your account.</p>
         </div>) : (
             <>
         <h1 className="event_create_heading">Create an Event With Eko Diary</h1>

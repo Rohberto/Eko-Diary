@@ -1,0 +1,74 @@
+@font-face {
+    font-family: 'Genos';
+    src: url(../../public/FONTS/Genos/Genos-Regular.ttf) format('truetype');
+}.calendar-container{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #fff;
+    font-family: 'Genos';
+}
+.calendar-header{
+    display: flex;
+    justify-content: space-between;
+}
+.date-header{
+    text-align: center;
+    width: 50%;
+    border-bottom: 2px solid gray;
+    padding-bottom: 10px;
+}
+.calendar-body{
+    display: flex;
+    margin-bottom: 20px;
+    position: relative;
+}
+.day-column{
+    width: 50%;
+    border-right: 1px solid gray;
+}
+.time-slot{
+    height: 40px;
+    border-bottom: 1px solid lightgray;
+    padding: 5px;
+    box-sizing: border-box;
+}
+.coming-soon{
+    text-align: center;
+    color: gray;
+    font-size: 22px;
+    font-weight: bolder;
+    position: absolute;
+    top: 0;
+    left: 10%;
+}
+.small-calendar{
+    width: 100%;
+    margin-top: 20px;
+}
+.month-switch{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-bottom: 1px solid gray;
+}
+.mini-calendar-grid{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 5px;
+}
+.mini-day-header, .mini-day-cell {
+    text-align: center;
+    padding: 5px;
+    background-color: #f9f9f9;
+    border: 1px solid lightgray;
+}
+.mini-day-header{
+    font-weight: bold;
+    background-color: #ddd;
+}
+.mini-day-cell{
+    height: 30px;
+    line-height: 30px;
+}

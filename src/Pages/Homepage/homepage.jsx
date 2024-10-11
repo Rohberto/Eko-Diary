@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import Slider from '../../Components/Slider';
 import { addEvent, updateDeletedEvent } from '../../Store/EventsSlice';
 import axios from 'axios';
+import Calendar from '../../Components/Calendar';
 
 const Homepage = ({socket}) => { 
   const navigate = useNavigate();
@@ -230,9 +231,7 @@ modal && (
 
 )
 }
-     </> ) : (<div className='no-events'>
-        <p>Couldn't find any event, refresh your page and check internet connectivity.</p>
-      </div>)
+     </> ) : (<Calendar/>)
 }
     </>)}
     </div> 

@@ -43,11 +43,12 @@ const EventsSlice = createSlice({
         })
         .addCase(getAllEvents.fulfilled, (state, action) => {
             state.loading = false;
+            console.log(action);
             if(action.payload.status === "FAILED"){
                 state.error = action.payload.message;
                 state.events = [];
             }else{
-                state.events = action.payload.data.sort(function(a,b){
+                state.events = action?.payload?.data?.sort(function(a,b){
                     return new Date(a.date) - new Date(b.date);
                   });
                 state.error = null;

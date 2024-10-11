@@ -18,7 +18,7 @@ const Header = () => {
       <li><Link to="/create-event">Create Events</Link></li>
       <li><Link to="">About</Link></li>
       {
-     !user ? ( <li><Link to="/login">Login</Link></li>) : (<li onClick={() => {
+     !user ? ( <li><Link to="/signup">Sign Up</Link></li>) : (<li onClick={() => {
       localStorage.removeItem("user");
       dispatch(loggedOut());
      }}><a href="#">Logout</a></li>)
@@ -70,7 +70,7 @@ const Header = () => {
     
       hamburger.classList.toggle("active");
       navMenu.classList.toggle("active");
-    }}><Link to="/login">Login</Link></li>) :  ( <li onClick={() => {
+    }}><Link to="/signup">Sign Up</Link></li>) :  ( <li onClick={() => {
       localStorage.removeItem("user");
       dispatch(loggedOut());
       const hamburger = document.querySelector(".hamburger");
