@@ -55,7 +55,7 @@ const Header = () => {
 
   hamburger.classList.toggle("active");
   navMenu.classList.toggle("active");
-}}><Link to="/create-event">Create Events</Link></li>
+}}><Link to="/create-event">Post Events</Link></li>
       <li onClick={() => {
   const hamburger = document.querySelector(".hamburger");
   const navMenu = document.querySelector(".mobile_menu_content");
